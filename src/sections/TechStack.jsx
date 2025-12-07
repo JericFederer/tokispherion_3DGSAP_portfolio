@@ -33,7 +33,7 @@ const TechStack = ({ language }) => {
         },
       }
     );
-  });
+  }, [language]);
 
   return (
     <div id="skills" className="flex-center section-padding">
