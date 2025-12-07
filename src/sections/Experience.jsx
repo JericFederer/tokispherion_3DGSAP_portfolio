@@ -87,7 +87,7 @@ const Experience = ({ language }) => {
         },
       });
     }, "<"); // position parameter - insert at the start of the animation
-  }, []);
+  }, [language]);
 
   return (
     <section

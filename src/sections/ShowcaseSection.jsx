@@ -41,7 +41,7 @@ const AppShowcase = ({ language }) => {
         }
       );
     });
-  }, []);
+  }, [language]);
 
   return (
     <div id="work" ref={sectionRef} className="app-showcase">

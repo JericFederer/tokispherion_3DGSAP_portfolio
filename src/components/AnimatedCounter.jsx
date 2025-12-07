@@ -35,7 +35,7 @@ const AnimatedCounter = ({ language }) => {
         },
       });
     }, counterRef);
-  }, []);
+  }, [language]);
 
   return (
     <div id="counter" ref={counterRef} className="padding-x-lg xl:mt-0 mt-32">
