@@ -95,7 +95,7 @@ const Hero = ({ language }) => {
                   that I believe can have a positive impact on well-being.
                 </p>
               : <p className="text-white-50 md:text-xl relative z-10 pointer-events-none">
-                  東京を拠点に活動する開発者、Jericです。<br />
+                  東京を拠点に活動する開発者、ジェリックです。<br />
                   ウェルビーイングに貢献できるアプリを作っています。
                 </p>
             }

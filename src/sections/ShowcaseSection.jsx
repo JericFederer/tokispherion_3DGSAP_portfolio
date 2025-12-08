@@ -53,8 +53,8 @@ const AppShowcase = ({ language }) => {
             </div>
             <div className="text-content">
               {language === 'en'
-                ? <h2>FlowFunds helps you manage daily spending and protect your savings offline with a calm design and logic built around real-life spending habits.</h2>
-                : <h2>FlowFunds は、実際の支出習慣に基づいたロジックと落ち着いたデザインで、オフラインでも日々の支出管理と貯蓄の保護をサポートします。</h2>
+                ? <h2 style={{ fontSize: 30 }}>FlowFunds helps you manage spending and protect savings offline, with a calm design based on real-life habits. It promotes and rewards self-discipline, avoids AI and constant connectivity, and stays light on resources to help the environment.</h2>
+                : <h2 style={{ fontSize: 25 }}>FlowFundsは、実生活の習慣に基づいた落ち着いたデザインで、支出管理と貯蓄の保護をオフラインでサポートします。自制心を促し報いる仕組みを持ち、AIや常時接続を使わず、リソースに優しく環境にも配慮しています。</h2>
               }
               {language === 'en'
                 ? <p className="text-white-50 md:text-xl">
