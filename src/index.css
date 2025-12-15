@@ -19,6 +19,10 @@ section {
   width: 100dvw;
 }
 
+.element {
+  will-change: transform, opacity;
+}
+
 @theme {
   --font-sans: "Mona Sans", sans-serif;
   --color-white-50: #d9ecff;
