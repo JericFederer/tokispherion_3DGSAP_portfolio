@@ -12,7 +12,8 @@ const Experience = ({ language }) => {
   useGSAP(() => {
     // Animate the height of the timeline div from 0% to 100% to "draw" it.
     gsap.from(".timeline-inner", {
-      height: "0%",
+      scaleY: 0,
+      transformOrigin: "top",
       scrollTrigger: {
         trigger: "#experience-wrapper",
         start: "top center",
@@ -23,19 +24,21 @@ const Experience = ({ language }) => {
       },
     });
 
-    // A single timeline for all card animations
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#experience", // Use the section as the main trigger
-        start: "top 60%", // Start animations when the top of the section is 60% from the top of the viewport
-        end: "bottom bottom",
-      },
-    });
-
-    // Animate all cards and text blocks within the same timeline
+    // Animate cards individually as they scroll into view
     gsap.utils.toArray(".exp-card-wrapper").forEach((wrapper) => {
       const card = wrapper.querySelector(".timeline-card");
       const text = wrapper.querySelector(".expText");
+
+      // Hint browser to optimize for changes
+      gsap.set([card, text], { willChange: "transform, opacity" });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: wrapper,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      });
 
       tl.from(card, {
         xPercent: -100,
@@ -43,13 +46,13 @@ const Experience = ({ language }) => {
         transformOrigin: "left left",
         duration: 1,
         ease: "power2.inOut",
-      }, "<0.2"); // Stagger the start of each card animation slightly
+      });
 
       tl.from(text, {
         opacity: 0,
         duration: 1,
         ease: "power2.inOut",
-      }, "<"); // Animate the text at the same time as its corresponding card
+      }, "<");
     });
   }, [language]);
 
@@ -68,7 +71,7 @@ const Experience = ({ language }) => {
           {/* The outer div acts as a mask for the inner line animation */}
           <div className="timeline-wrapper absolute top-0 bottom-0 overflow-hidden">
             {/* This inner div's height will be animated */}
-            <div className="timeline-inner h-full" />
+            <div className="timeline-inner h-full" style={{ willChange: "transform" }} />
             <div className="gradient-line w-1 h-full" />
           </div>
           <div className="relative z-50 xl:space-y-32 space-y-10">
