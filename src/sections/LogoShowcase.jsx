@@ -1,4 +1,5 @@
 import { logoIconsList, textDisplayList } from "../constants";
+import { memo } from "react";
 
 // const LogoIcon = ({ icon }) => {
 //   return (
@@ -16,7 +17,7 @@ const TextDisplay = ({ text }) => {
   );
 };
 
-const LogoShowcase = () => (
+const LogoShowcase = memo(() => (
   <div className="md:my-20 my-10 relative">
     <div className="gradient-edge" />
     <div className="gradient-edge" />
@@ -41,6 +42,6 @@ const LogoShowcase = () => (
       </div>
     </div>
   </div>
-);
+));
 
 export default LogoShowcase;

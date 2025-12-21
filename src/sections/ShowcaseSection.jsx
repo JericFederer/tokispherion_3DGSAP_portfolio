@@ -47,7 +47,7 @@ const AppShowcase = ({ language }) => {
     <div id="work" ref={sectionRef} className="app-showcase">
       <div className="w-full">
         <div className="showcaselayout">
-          <div ref={flowFundsRef} className="first-project-wrapper">
+          <div ref={flowFundsRef} className="first-project-wrapper animated-card">
             <div className="image-wrapper">
               <img src="/images/project1.png" alt="FlowFunds" />
             </div>
@@ -69,7 +69,7 @@ const AppShowcase = ({ language }) => {
           </div>
 
           <div className="project-list-wrapper overflow-hidden">
-            <div className="project" ref={startupRef}>
+            <div className="project animated-card" ref={startupRef}>
               <div className="image-wrapper bg-[#18181B]">
                 <img
                   src="/images/project2.png"
@@ -84,7 +84,7 @@ const AppShowcase = ({ language }) => {
               </a>
             </div>
 
-            <div className="project" ref={othersRef}>
+            <div className="project animated-card" ref={othersRef}>
               <div className="image-wrapper bg-[#18181B]">
                 <img src="/images/project3.png" alt="Others" />
               </div>
