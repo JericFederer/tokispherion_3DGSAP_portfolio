@@ -20,7 +20,7 @@ const Experience = ({ language }) => {
         // End the animation when the bottom of the trigger hits the bottom of the viewport.
         // This ensures the line is fully drawn as you scroll through the entire section.
         end: "bottom-=150 bottom", // End a little before the absolute bottom for a better feel
-        scrub: true,
+        scrub: 1,
       },
     });
 

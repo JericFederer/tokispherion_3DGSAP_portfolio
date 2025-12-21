@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,6 +10,30 @@ import { techStackIcons, jpTechStackIcons } from "../constants";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Memoized component to prevent re-renders of existing 3D models during staggering
+const TechCardItem = memo(({ icon, showModel }) => {
+  return (
+    <div className="card-border tech-card overflow-hidden group xl:rounded-full rounded-lg">
+      {/* The tech-card-animated-bg div is used to create a background animation when the 
+          component is hovered. */}
+      <div className="tech-card-animated-bg" />
+      <div className="tech-card-content">
+        {/* The tech-icon-wrapper div contains the TechIconCardExperience component, 
+            which renders the 3D model of the tech stack icon. */}
+        <div className="tech-icon-wrapper">
+          {showModel && <TechIconCardExperience model={icon} />}
+        </div>
+        {/* The padding-x and w-full classes are used to add horizontal padding to the 
+            text and make it take up the full width of the component. */}
+        <div className="padding-x w-full">
+          {/* The p tag contains the name of the tech stack icon. */}
+          <p>{icon.name}</p>
+        </div>
+      </div>
+    </div>
+  );
+});
+
 const TechStack = ({ language }) => {
   const [showModels, setShowModels] = useState(false);
   const [visibleCount, setVisibleCount] = useState(0);
@@ -18,7 +42,7 @@ const TechStack = ({ language }) => {
   useGSAP(() => {
     ScrollTrigger.create({
       trigger: "#skills",
-      start: "top bottom", // Start loading models when the section is approaching viewport
+      start: "top 75%", // Start loading models when the section is approaching viewport
       once: true,
       onEnter: () => setShowModels(true),
     });
@@ -80,27 +104,11 @@ const TechStack = ({ language }) => {
               card-border, tech-card, overflow-hidden, and group. The xl:rounded-full and rounded-lg 
               classes are only applied on larger screens. */}
           {icons.map((techStackIcon, index) => (
-            <div
+            <TechCardItem
               key={techStackIcon.name}
-              className="card-border tech-card overflow-hidden group xl:rounded-full rounded-lg"
-            >
-              {/* The tech-card-animated-bg div is used to create a background animation when the 
-                  component is hovered. */}
-              <div className="tech-card-animated-bg" />
-              <div className="tech-card-content">
-                {/* The tech-icon-wrapper div contains the TechIconCardExperience component, 
-                    which renders the 3D model of the tech stack icon. */}
-                <div className="tech-icon-wrapper">
-                  {showModels && index < visibleCount && <TechIconCardExperience model={techStackIcon} />}
-                </div>
-                {/* The padding-x and w-full classes are used to add horizontal padding to the 
-                    text and make it take up the full width of the component. */}
-                <div className="padding-x w-full">
-                  {/* The p tag contains the name of the tech stack icon. */}
-                  <p>{techStackIcon.name}</p>
-                </div>
-              </div>
-            </div>
+              icon={techStackIcon}
+              showModel={showModels && index < visibleCount}
+            />
           ))}
 
           {/* This is for the img part */}

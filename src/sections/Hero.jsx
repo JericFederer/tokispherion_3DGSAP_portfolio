@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import AnimatedCounter from "../components/AnimatedCounter";
 import Button from "../components/Button";
@@ -8,7 +9,8 @@ import { enWords, jpWords } from "../constants";
 import HeroExperience from "../components/models/hero_models/HeroExperience";
 
 const Hero = ({ language }) => {
-  const [words, setWords] = useState(enWords)
+  const [words, setWords] = useState(enWords);
+  const [showHeroModel, setShowHeroModel] = useState(true);
 
   useGSAP(() => {
     gsap.fromTo(
@@ -16,6 +18,15 @@ const Hero = ({ language }) => {
       { y: 50, opacity: 0 },
       { y: 0, opacity: 1, stagger: 0.2, duration: 1, ease: "power2.inOut" }
     );
+
+    // Optimize: Unmount the 3D model when it leaves the viewport to save GPU resources
+    ScrollTrigger.create({
+      trigger: "#hero",
+      start: "top top",
+      end: "bottom top",
+      onLeave: () => setShowHeroModel(false),
+      onEnterBack: () => setShowHeroModel(true),
+    });
   });
 
   useEffect(() => {
@@ -113,7 +124,7 @@ const Hero = ({ language }) => {
         {/* RIGHT: 3D Model or Visual */}
         <figure>
           <div className="hero-3d-layout">
-            <HeroExperience />
+            {showHeroModel && <HeroExperience />}
           </div>
         </figure>
       </div>
