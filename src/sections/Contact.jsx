@@ -44,7 +44,7 @@ const Contact = ({ language }) => {
       <div className="w-full h-full md:px-10 px-5">
         <TitleHeader
           title={language === 'en' ? "Get in Touch – Let’s Connect" : "お問い合わせ – つながりましょう"}
-          sub={language === 'en' ? "💬 Have questions or ideas? Let’s talk! 🚀": "💬 ご質問やアイデアはありますか？ぜひお話ししましょう！🚀"}
+          sub={language === 'en' ? "Whether you have a question or just want to say hi, I'd love to hear from you!" : "ご質問やご挨拶など、どのようなことでもお気軽にご連絡ください。心よりお待ちしております。"}
         />
         <div className="grid-12-cols mt-16">
           <div className="xl:col-span-5">
@@ -55,33 +55,33 @@ const Contact = ({ language }) => {
                 className="w-full flex flex-col gap-7"
               >
                 <div>
-                  <label htmlFor="name">{language === 'en' ? 'Your name' : 'お名前'}</label>
+                  <label htmlFor="name">{language === 'en' ? 'Name' : 'お名前'}</label>
                   <input
                     type="text"
                     id="name"
                     name="name"
                     value={form.name}
                     onChange={handleChange}
-                    placeholder={language === 'en' ? 'What’s your good name?' : 'お名前を入力してください'}
+                    placeholder={language === 'en' ? 'Name' : 'お名前'}
                     required
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="email">{language === 'en' ? 'Your email' : 'メールアドレス'}</label>
+                  <label htmlFor="email">{language === 'en' ? 'Email Address' : 'メールアドレス'}</label>
                   <input
                     type="email"
                     id="email"
                     name="email"
                     value={form.email}
                     onChange={handleChange}
-                    placeholder={language === 'en' ? 'What’s your email address?' : 'メールアドレスを入力してください'}
+                    placeholder={language === 'en' ? 'Email Address' : 'メールアドレス'}
                     required
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message">{language === 'en' ? 'Your message' : 'メッセージ'}</label>
+                  <label htmlFor="message">{language === 'en' ? 'Message' : 'メッセージ'}</label>
                   <textarea
                     id="message"
                     name="message"

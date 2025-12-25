@@ -22,7 +22,7 @@ const App = () => {
 
   useEffect(() => {
     if (isPlaying) {
-      audioRef.current.volume = 0.01;
+      audioRef.current.volume = 0.33;
       audioRef.current.play().catch((error) => {
         console.log("Audio play failed:", error);
       });
